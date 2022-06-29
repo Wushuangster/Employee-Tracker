@@ -41,7 +41,9 @@ async function init() {
     await inquirer
     .prompt(initQuestions)
     .then(async (res) => {
+      
       if (res.choice != 'Quit') {
+        // console.log(res.choice.includes('View'))
         if (res.choice.includes('View')) {
           await viewDB(res.choice);
         } else if (res.choice.includes('Add')) {
@@ -59,8 +61,10 @@ async function init() {
 }
 
 async function viewDB(choice) {
+  console.log(choice.includes('Employees'))
   if (choice.includes('Employees')) {
     db.query('SELECT * FROM employee', function(err, results) {
+      // console.log(results)
       console.table(results);
     })
   } else if (choice.includes('Roles')) {
